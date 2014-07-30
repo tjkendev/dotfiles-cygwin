@@ -1,7 +1,5 @@
-" .vimrc
+" .vimrc for cygwin (+ MaxOSX)
 scriptencoding utf-8
-
-set matchpairs& matchpairs+=<:>
 
 """ Editor """
 set clipboard=unnamed,autoselect " クリップボード利用
@@ -11,13 +9,14 @@ set shiftwidth=4 " タブを挿入するときの幅
 set expandtab    " タブをスペースとして扱う
 set softtabstop=0 " 
 set shiftround   " <>インデントはshiftwidth
-"set infercase
-"set virtualedit=all
-"set hidden
+set matchpairs& matchpairs+=<:>
+set infercase    " 補完時の大文字小文字区別しない
+"set virtualedit=all    " 文字が存在しないところにもカーソル移動可能
+set hidden       " バッファを閉じる代わりに隠す
 set backspace=indent,eol,start " Backspaceによる削除有効化
-set autoindent  " オートインデント
+set autoindent   " オートインデント
 "set cindent     " オートインデントより賢いインデント(C用?)
-set nowrap      " 長いテキストを折り返さない
+set nowrap       " 長いテキストを折り返さない
 set formatoptions-=r    " 改行時コメント無効
 set formatoptions-=o
 set fileformats=unix,dos,mac " 改行コードの自動認識
@@ -29,13 +28,12 @@ set list        " 不可視文字の可視化
 set cursorline  " カーソルのある行を強調(7.4~)
 "set cursorcolumn " カーソルのある列を強調
 set laststatus=2 " ステータスラインを常に表示
-if !has('gui_running')
-  set t_Co=256
-endif
+set t_Co=256
 set showmatch   " 対応するカッコをハイライト表示
 set matchtime=3 " 対応括弧のハイライト表示を3秒に
 " set title       " > Vim を使ってくれてありがとう <
 set notitle     " タイトル変更しない
+syntax on       " syntax on
 
 """ Search """
 set ignorecase  " 検索時大文字小文字区別しない
@@ -71,6 +69,12 @@ set showcmd     " 入力中のコマンドをステータスに表示
 """ Detail """
 " 不可視文字の設定
 set listchars=tab:▸\ ,eol:\ ,trail:-,extends:»,precedes:«,nbsp:%
+
+""" Command """
+" ESC二回で検索ハイライトを消す
+nmap <silent> <Esc><Esc> :nohlsearch<CR>
+" ファイルのフルパスを表示
+command! Fp :echo expand("%:p")
 
 """ NeoBundle """
 set nocompatible               " Be iMproved
@@ -117,6 +121,8 @@ NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'altercation/vim-colors-solarized'
 
+filetype plugin indent on " Required!
+
 " git protocol
 let g:neobundle_default_git_protocol='git'
 
@@ -127,35 +133,23 @@ let g:java_allow_cpp_keywords=1
 let g:java_space_errors=1
 let g:java_highlight_functions=1
 
-" Gif config
-" nmap s <Plug>(easymotion-s2)
-" nmap t <Plug>(easymotion-t2)
-" Gif config
-"map  / <Plug>(easymotion-sn)
-"omap / <Plug>(easymotion-tn)
-"map  n <Plug>(easymotion-next)
-"map  N <Plug>(easymotion-prev)
-" Gif config
-"map <Leader>h <Plug>(easymotion-lineforward)
-"map <Leader>j <Plug>(easymotion-j)
-"map <Leader>k <Plug>(easymotion-k)
-"map <Leader>l <Plug>(easymotion-linebackward)
+"""" easymotion """"
+map <Leader> <Plug>(easymotion-prefix)
+" ホームポジションに近いキーを使う
+let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
+" 「'」 + 何かにマッピング
+let g:EasyMotion_leader_key=";"
+" 1 ストローク選択を優先する
+let g:EasyMotion_grouping=1
+" カラー設定変更
+hi EasyMotionTarget ctermbg=none ctermfg=red
+hi EasyMotionShade  ctermbg=none ctermfg=blue
 
-let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-" let g:EasyMotion_use_migemo = 1
-" Gif config
-"
-" " Require tpope/vim-repeat to enable dot repeat support
-" " Jump to anywhere with only `s{char}{target}`
-" " `s<CR>` repeat last find motion.
-"nmap s <Plug>(easymotion-s)
-" " Bidirectional & within line 't' motion
-"omap t <Plug>(easymotion-bd-tl)
-" " Use uppercase target labels and type as a lower case
+" Use uppercase target labels and type as a lower case
 let g:EasyMotion_use_upper = 1
-"  " type `l` and match `l`&`L`
+" type `l` and match `l`&`L`
 let g:EasyMotion_smartcase = 1
-"  " Smartsign (type `3` and match `3`&`#`)
+" Smartsign (type `3` and match `3`&`#`)
 let g:EasyMotion_use_smartsign_us = 1
 
 """ lightline """
@@ -168,14 +162,6 @@ let g:lightline = {
       \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
       \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
       \ }
-
-
-" jellybeans
-"let g:jellybeans_overrides = {
-"  \    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
-"  \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
-"  \              'attr': 'bold' },
-"  \}
 
 """ quickrun """
 let g:quickrun_config = {
@@ -194,15 +180,25 @@ let g:quickrun_config = {
             \     "convert_win_path": 1,
             \ }
             \}
+" :QuickRun打つのだるいしF5
+nnoremap <silent><F5> :QuickRun -mode n<CR>
+vnoremap <silent><F5> :QuickRun -mode v<CR>
+" :qr で :QuickRun と入力できるように
+ca qr QuickRun
 
 """ syntastic """
+" java compiler encoding => utf-8
 let g:syntastic_java_javac_executable="javac -encoding UTF-8"
+" use c++11
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
-
-filetype plugin indent on " Required!
-syntax on
+" use pyflakes and pep8
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+" pep8のErrorCheck僕には厳しいので少し緩めに
+let g:syntastic_python_pep8_args='--ignore=E302,E501,E225,E226,E228,E265,E702,E703'
+" SyntasticToggleMode を F4 で切り替え
+nnoremap <silent><F4> :SyntasticToggleMode<CR>
+vnoremap <silent><F4> :SyntasticToggleMode<CR>
 
 """ colorscheme """
 colorscheme jellybeans
-" comment color
 highlight Comment ctermfg=70
