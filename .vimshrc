@@ -1,0 +1,11 @@
+# .vimshrc
+
+# Windows JavaをUTF-8で使うためのAliases
+alias js='java -jar `cygpath -wp $HOME/rhino/js.jar`'
+alias javac="javac -J-Dfile.encoding=UTF-8"
+alias jar="jar -J-Dfile.encoding=UTF-8"
+alias javah="javah -J-Dfile.encoding=UTF-8"
+alias javap="javap -J-Dfile.encoding=UTF-8"
+alias javaw="javaw -Dfile.encoding=UTF-8"
+alias java="java -Dfile.encoding=UTF-8"
+

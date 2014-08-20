@@ -1,0 +1,14 @@
+BoldAsFont=no
+Font=Inconsolata for Powerline
+Locale=ja_JP
+Charset=UTF-8
+Transparency=medium
+ForegroundColour=255,255,255
+BackgroundColour=24,24,24
+FontHeight=12
+BackspaceSendsBS=yes
+Term=xterm-256color
+AltFnShortcuts=yes
+ScrollbackLines=10000000
+FontSmoothing=default
+OpaqueWhenFocused=no
