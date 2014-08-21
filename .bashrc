@@ -114,7 +114,7 @@
 # alias la='ls -A'                              # all but . and ..
 # alias l='ls -CF'                              #
 
-# javaのUTF-8化けに対する修正
+# use Windows Java in UTF-8
 alias js='java -jar `cygpath -wp $HOME/rhino/js.jar`'
 alias javac="javac -J-Dfile.encoding=UTF-8"
 alias jar="jar -J-Dfile.encoding=UTF-8"
@@ -206,18 +206,27 @@ alias java="java -Dfile.encoding=UTF-8"
 # 
 # alias cd=cd_func
 export JLESSCHARSET=japanese-sjis
-alias ls='ls --show-control-chars'
-alias l='ls -Fa'
-
 export TERM=xterm-256color
 
+# ls
+alias ls='ls --show-control-chars'
+alias l='ls -Fa --color'
+alias la='ls -la'
+
+# source
+alias s='source ~/.bash_profile'
+
 # history
+alias h='history'
 #export HISTCONTROL=ignoredups,ignorespace,erasedups
 export HISTCONTROL=ignoreboth,ignorespace
-#export HISTCONTROL=ignoredups+ignorespace+erasedups
-export HISTIGNORE="fg*:bg*:history:cd*:a:a.exe"
+export HISTIGNORE="fg*:bg*:h:history:cd*:a:a.exe:l:ls:la:s"
 HISTTIMEFORMAT='%Y%m%d %T ';
 export HISTTIMEFORMAT
 
 # gem
 export GEM_HOME=
+
+# CR+LF
+export SHELLOPTS
+set -o igncr

@@ -53,6 +53,14 @@ export PATH=$PATH:~/.nodejs/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# ndenv
+#export PATH="$HOME/.ndenv/bin:$PATH"
+#echo "$(ndenv init -)"
+
+# node.js (in Windows)
+export PATH="/cygdrive/c/app/nodejs:$PATH"
+export PATH="~/node_modules/.bin/:$PATH"
+
 # java and apache
 export PATH="/cygdrive/c/Program Files (x86)/Java/jdk1.7.0_45/bin:$PATH"
 
