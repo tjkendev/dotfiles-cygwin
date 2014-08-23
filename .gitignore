@@ -1,0 +1,4 @@
+# 上げる必要のないもの
+.emacs.d/auto-save-list
+.emacs.d/elisp
+.emacs.d/ac-comphist.dat

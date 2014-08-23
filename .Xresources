@@ -1,0 +1,8 @@
+XTerm*cjkWidth : true
+XTerm*forcePackedFont: false
+
+XTerm*jumpScroll: false
+
+#define INCONSOLATA xft:Inconsolata:style=Medium:pixelsize=16,xft:メイリオ:pixelsize=18
+urxvt*font: INCONSOLATA
+urxvt*boldFont: INCONSOLATA

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#this resolution is compatible with 1920x1080.
+XWin -screen 0 1440x810
