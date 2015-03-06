@@ -216,6 +216,9 @@ alias la='ls -la'
 # source
 alias s='source ~/.bash_profile'
 
+# open
+alias open='cygstart'
+
 # history
 alias h='history'
 #export HISTCONTROL=ignoredups,ignorespace,erasedups

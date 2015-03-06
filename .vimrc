@@ -80,13 +80,29 @@ ca vd vertical<Space>diffsplit
 " .vimrcの再読み込み
 ca svimrc source<Space>~/.vimrc
 
+" カーソルキー
+imap OA <Up>
+imap OB <Down>
+imap OC <Right>
+imap OD <Left>
+
 """ NeoBundle """
 set nocompatible               " Be iMproved
 filetype off
+
+if !1 | finish | endif
+
 if has('vim_starting')
+  if &compatible
+    set nocompatible
+  endif
+
+  " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " base
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -109,6 +125,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'VimClojure'
 NeoBundle 'indentLine'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'AnsiEsc.vim'
 " git
 NeoBundle 'tpope/vim-fugitive'
 " python
@@ -163,7 +180,11 @@ NeoBundle 'nanotech/jellybeans.vim'
 "NeoBundle 'w0ng/vim-hybrid'
 "NeoBundle 'altercation/vim-colors-solarized'
 
+call neobundle#end()
+
 filetype plugin indent on " Required!
+
+NeoBundleCheck
 
 " git protocol
 let g:neobundle_default_git_protocol='git'
@@ -237,10 +258,10 @@ let g:quickrun_config = {
             \     "runner/vimproc/updatetime" : 60,
             \     "hook/time/enable" : 1
             \ },
-            \ "cpp/g++" : {
+            \ "cpp" : {
             \     "type"    : "cpp",
             \     "command" : "g++",
-            \     "cmdopt"  : "-std=c++11 -stdlib=libc++"
+            \     "cmdopt"  : "-std=c++11"
             \ },
             \ "java" : {
             \     "exec" : [
@@ -262,6 +283,8 @@ nnoremap <silent><F5> :QuickRun -mode n<CR>
 vnoremap <silent><F5> :QuickRun -mode v<CR>
 " :qr で :QuickRun と入力できるように
 ca qr QuickRun
+" 実行結果のエスケープシーケンスをAnsiEscで有効に
+autocmd FileType quickrun AnsiEsc
 
 """ neocomplete """
 
