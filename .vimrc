@@ -119,7 +119,7 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outlie'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neocomplete.git'
