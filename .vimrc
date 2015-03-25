@@ -52,7 +52,9 @@ set fileencodings+=,ucs-2le,ucs-2,utf-8
 
 """ System """
 set mouse=a     " マウス機能有効化
+set nowritebackup
 set nobackup    " バックアップ不要
+set noswapfile
 set backupdir=~/.vimbackup " バックアップディレクトリ
 set noswapfile  " スワップファイル不要
 set vb t_vb=    " ビープ音Off
