@@ -70,7 +70,8 @@ set wildmenu    " コマンドラインモードでTabキーでファイル名�
 
 """ Detail """
 " 不可視文字の設定
-set listchars=tab:▸\ ,eol:\ ,trail:-,extends:»,precedes:«,nbsp:%
+"set listchars=tab:▸\ ,eol:\ ,trail:-,extends:»,precedes:«,nbsp:%
+set listchars=eol:\ ,trail:-,extends:»,precedes:«,nbsp:%
 
 """ Command """
 " ESC二回で検索ハイライトを消す
@@ -125,7 +126,7 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/neocomplete.git'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'VimClojure'
-NeoBundle 'indentLine'
+NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'AnsiEsc.vim'
 " git

@@ -233,3 +233,6 @@ export GEM_HOME=
 # CR+LF
 export SHELLOPTS
 set -o igncr
+
+# fork failed
+export LANG=C
