@@ -47,8 +47,8 @@ set encoding=utf-8
 set ambw=double
 set termencoding=utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,euc-jp,cp932,iso-2022-jp
-set fileencodings+=,ucs-2le,ucs-2,utf-8
+"set fileencodings=ucs-bom,euc-jp,cp932,iso-2022-jp
+"set fileencodings+=,ucs-2le,ucs-2,utf-8
 
 """ System """
 set mouse=a     " マウス機能有効化
@@ -88,6 +88,20 @@ imap OA <Up>
 imap OB <Down>
 imap OC <Right>
 imap OD <Left>
+
+"" -b付きでバイナリモード
+"" http://d.hatena.ne.jp/rdera/20081022/1224682665
+augroup BinaryXXD
+  autocmd!
+  autocmd BufReadPre  *.bin let &binary =1
+  autocmd BufReadPost * if &binary | silent %!xxd -g 1
+  autocmd BufReadPost * set ft=xxd | endif
+  autocmd BufWritePre * if &binary | execute "%!xxd -r" | endif
+  autocmd BufWritePost * if &binary | silent %!xxd -g 1
+  autocmd BufWritePost * set nomod | endif
+augroup END
+"" BinaryXXDを無効にしたい場合
+command InvalidBinary :autocmd! BinaryXXD
 
 """ NeoBundle """
 set nocompatible               " Be iMproved

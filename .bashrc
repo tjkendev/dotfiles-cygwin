@@ -230,9 +230,16 @@ export HISTTIMEFORMAT
 # gem
 export GEM_HOME=
 
+# python
+unset PYTHONHOME
+
 # CR+LF
 export SHELLOPTS
 set -o igncr
 
 # fork failed
 export LANG=C
+
+# use X on mintty
+export DISPLAY=localhost:0.0
+alias runx='run xwin -multiwindow -noclipboard'
